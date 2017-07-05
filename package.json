@@ -1,0 +1,18 @@
+{
+  "name": "issou-bot",
+  "version": "0.1.0",
+  "description": "Un bot trop issou",
+  "main": "bot.js",
+  "dependencies": {
+    "twit": "^2.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yopaman",
+  "license": "ISC",
+  "keywords": [
+    "issou"
+  ]
+}
