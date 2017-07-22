@@ -1,36 +1,38 @@
-var Twit = require('twit');
-var config = require('./config.js');
+const Twit = require('twit');
 
-var T = new Twit({
-  consumer_key: config.consumer_key,
-  consumer_secret: config.consumer_secret,
-  access_token: config.access_token,
-  access_token_secret: config.access_token_secret,
+var T = new Twit({
+
+  consumer_key:         config.consumer_key,
+
+  consumer_secret:      config.consumer_secret,
+
+  access_token:         config.access_token,
+
+  access_token_secret:  config.access_token_secret,
+
 })
 
-var retweet = function () {
-  var params = {
-    q: 'issou',
-  }
 
-T.get('search/tweets', params, function(err, data) {
-  if (!err) {
-    var retweetId = data.statuses[0].id_str;
-      T.post('statuses/retweet/:id', { id: retweetId }, function(err, response) {
-        if (response) {
-          console.log('Tweet retweeté');
-        } else if (err) {
-          console.log('Un bug est survenu lors du retweet.');
+var stream = T.stream('statuses/filter', { track: 'issou' }),
+	  tweetCount = 0;
+
+stream.on('tweet', function (tweet) {
+	if (tweetCount < 50) {
+	T.post('statuses/retweet/:id', { id: tweet.id_str }, function (err, data, response) {
+        if (err) {
+        	console.log('Erreur lors du retweet : ' + err);
+		} else {
+		tweetCount++;
+	        console.log('Tweet : ' + tweet.id_str + ' retweeté. Tweet count : ' + tweetCount);
         }
-      });
-  } else {
-    console.log('Un bug est survenu lors de la recherche.')
-  }
-
+    });
+    } else {
+	    console.log('Rate limit atteinte : ' + tweetCount + ' tweets');
+    }
 });
 
-}
 
-retweet();
-
-setInterval(retweet, 360000);
+setInterval(function() {
+	tweetCount = 0;
+}, 1800000);
+    

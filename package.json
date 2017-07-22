@@ -1,18 +1,26 @@
 {
   "name": "issou-bot",
-  "version": "0.1.0",
-  "description": "Un bot trop issou",
+  "version": "1.0.1",
+  "description": "A twitter bot that retweet every tweets that contains \"issou\"",
   "main": "bot.js",
   "dependencies": {
-    "twit": "^2.2.5"
+    "twit": "^2.2.9"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Yopaman",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yopaman/issou-bot.git"
+  },
   "keywords": [
     "issou"
-  ]
+  ],
+  "author": "Yopaman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yopaman/issou-bot/issues"
+  },
+  "homepage": "https://github.com/Yopaman/issou-bot#readme"
 }
