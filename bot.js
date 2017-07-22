@@ -1,4 +1,5 @@
 const Twit = require('twit');
+const config = require('./config.js');
 
 var T = new Twit({
 
